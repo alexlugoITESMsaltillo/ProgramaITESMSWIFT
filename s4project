@@ -1,0 +1,57 @@
+import UIKit
+
+enum Velocidades : Int{
+    
+    case apagado = 0, velocidadBaja = 20, velocidadMedia = 50, velocidadAlta = 120
+    
+    
+    init( velocidadinicial : Velocidades){
+        self = velocidadinicial
+    }
+}
+class Auto {
+    var velocidad : Velocidades
+    
+    init(){
+        self.velocidad = Velocidades.apagado
+    }
+    
+    func cambioDeVelocidad() -> ( actual : Int, velocidadEnCadena: String) {
+        
+        if self.velocidad == .apagado {
+            self.velocidad = .velocidadBaja
+        } else if self.velocidad == .velocidadBaja {
+            self.velocidad = .velocidadMedia
+        } else if self.velocidad == .velocidadMedia {
+            self.velocidad = .velocidadAlta
+        } else if self.velocidad == .velocidadAlta {
+            self.velocidad = .velocidadMedia
+        }
+        
+        return (self.velocidad.rawValue, "")
+    }
+    
+    func tag() -> String {
+        var textt: String
+        switch(self.velocidad.rawValue) {
+        case 0 :
+            textt = "Apagado"
+        case 20 :
+            textt = "Velocidad baja"
+        case 50 :
+            textt = "Velocidad media"
+        case 120 :
+            textt = "Velocidad alta"
+        default :
+            textt = "Apagado"
+        }
+        return "\(self.velocidad.rawValue), \(textt)"
+    }
+}
+
+var dashboard = Auto()
+
+for dashboard in Auto{
+    print(auto.texto())
+    auto.cambioDeVelocidad()
+}
